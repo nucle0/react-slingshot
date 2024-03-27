@@ -30,6 +30,10 @@ jobs:
     steps:
       - checkout
       - run: npm audit
+      - run:
+        command: npm update
+        command: npm audit
+        when: on_fail
 
 workflows:
   build-and-test:
