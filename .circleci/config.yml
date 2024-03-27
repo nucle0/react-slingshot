@@ -16,6 +16,8 @@ jobs:
     steps:
       - run: echo "testing"
   analyze:
+    docker:
+      - image: circleci/node:13.8.0
     steps:
       - run: echo "analyzing"
 
