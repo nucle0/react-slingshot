@@ -9,17 +9,24 @@ jobs:
     steps:
       - checkout
       - run: npm i
+      - save_cach:
+        key: "npm-packages"
       - run: npm run lint
+        
   test:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "testing"
+      - checkout
+      - restore_cach:
+        key: "npm-packages"
+      - run: npm i
+      - run: npm run test
   analyze:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "analyzing"
+      - run: npm audit
 
 workflows:
   build-and-test:
